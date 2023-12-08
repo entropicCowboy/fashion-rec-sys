@@ -54,12 +54,18 @@ def recommend(style):
   distances = similarity[style_index]
   styles_list = sorted(list(enumerate(distances)), reverse=True, key=lambda x:x[1])[1:6]
 
+  recommendations = []
   for i in styles_list:
-    print(new_df.iloc[i[0]].style)
+    recommendations.append(new_df.iloc[i[0]].style)
+  return recommendations
 
-# Test the recommender system
-recommend('cottagecore')
-
+# save the recommendations for later use
+# recommendations = {}
+# style_list = list(data.keys())
+# for style in style_list:
+#   recommendations[style] = recommend(style)
+# with open("recommendations.json", "w") as outfile:
+#     json.dump(recommendations, outfile)
 
 
 # Now, create clusters for the fashion styles to aid in the initial photos presented to a user during their test
