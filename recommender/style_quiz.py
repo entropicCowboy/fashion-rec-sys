@@ -13,10 +13,18 @@ f = open('clusters.json')
 global clusters
 clusters = json.load(f)
 f.close()
+# load recommendations
+f = open('recommendations.json')
+global recommendations_list
+recommendations_list = json.load(f)
+f.close()
 
 ROOT_PATH = "../image_scraping/style_images/"
 styles = {}
+total_num_styles = len(list(styles.keys()))
 global status
+global any_equil_reached
+any_equil_reached = False
 global best_ratio
 global best_style
 best_ratio = -1
@@ -50,7 +58,7 @@ class Style:
         global best_ratio
         global best_style
         if status != 1 and status != -1:
-            raise Exception("State must be equal to 1 or -1")
+            raise Exception("Status must be equal to 1 or -1")
         self.ratio += status/self.num_pics
         if self.ratio > best_ratio:
             best_ratio = self.ratio
@@ -58,16 +66,20 @@ class Style:
     
     """Updates the equilibrium based on the style's ratio and returns whether that style can be chosen for the user"""
     def equil_reached(self) -> bool:
+        global any_equil_reached
         # if the style has 5 or less pictures, all must be liked by the user
         if self.num_pics < 6:
             if self.ratio == 1:
+                any_equil_reached = True
                 return True
         # if the styles has less than 10 pictures, a greater majority must be liked by the user
         elif self.num_pics < 10:
-            if self.ratio >= 0.5:
+            if self.ratio >= 0.7:
+                any_equil_reached = True
                 return True
         else:
-            if self.num_pics >= 0.7:
+            if self.num_pics >= 0.5:
+                any_equil_reached = True
                 return True
         return False
         
@@ -124,15 +136,10 @@ def style_quiz():
     initial_present()
     initial_present()
     initial_present()
-    # best_ratio = -1
-    # for style_name in styles:
-    #     style = styles[style_name]
-    #     if style.ratio > best_ratio:
-    #         best_ratio = style.ratio
-    #         best_style = style
+    recommendations = recommendations_list[best_style].append(best_style)
     print(f"Style: {best_style}, ratio: {best_ratio}")
 
-for style_name in list(data.keys())[:300]:
+for style_name in list(data.keys()):
     try:
         style = Style(style_name)
         # if there are photos in the file, add it to the list
@@ -149,7 +156,4 @@ for i in range(len(clusters)):
         if style in styles:
             new_clusters[i].append(style)
 
-# present_image(styles["meatcore"])
 # style_quiz()
-# image = Image.open(style0.path + style0.pics[1])
-# image.show()
