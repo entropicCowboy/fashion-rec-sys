@@ -1,0 +1,47 @@
+Thanks for trying this niche fashion recommender system! This project is inspired by TikTok's diverse 
+and, at times, extremely specific fashion styles (e.g., clowncore, coastal grandmother). It was created
+by Frija Reinert and Sam Haseth for our Social Computing class at Gustavus Adolphus College.
+
+A few important things to note before you begin:
+   
+    - These images aren't perfect: each of these images were manually filtered; however, it is possible
+      that a few particularly scandelous or otherwise offensive may have slipped through the cracks. We
+      rate this system approx. PG13. Some images may also be less focused on clothing and more on hair/make 
+      up styles, accessories, or a graphic (that you might wear on a t-shirt).
+
+    - Because we pulled these automatically from Pinterest, it is also possible that you will be shown 
+      the same photo more than once as it was used for multiple styles. We recommend you try to answer 
+      the same way for each photo, but it's not a big deal if you don't.
+
+    - Unfortunately, we were not able to figure out a way to reliably close each image after it is shown.
+      This means, at the end of the quiz, you may be left with 50-200 images open in your image viewer.
+      We hope that your system allows you to close all tabs at once. If not, please take notice of this
+      fault in the program before you begin.
+
+    - If your system uses MacOS, you may need to reconfigure your settings to allow this program to read
+      your keystrokes in order to work.
+
+Instructions:
+
+    - The # of images shown, as well as the time taken, will differ each run, but expect this quiz to take
+      roughly 10 minutes.
+
+    - Once you run the program, you will be presented with a series of images on your screen displayed
+      through your computer's image viewer. To respond to these images, simply press the "y" key, for 
+      yes, if you like the clothing shown in that image, or "n," for no, if you do not like that style.
+
+    - After you respond to an image, a new one will be shown. If the image appears to not go away, wait
+      a few seconds, your system may be lagging a bit. If the image still doesn't go away, try pressing
+      the same key again--sometimes the same image may be shown twice in a row.
+
+    - At the end of the quiz, you will be shown an image that says "you're all done," where you must then
+      navigate back to the terminal to view your results--you may have to scroll up a little.
+
+About the project:
+
+    - This program contains ~500 different styles, and 3-4 thousand photos in total. Each style was 
+      grouped into a cluster and matched with its 5 most similar styles. This program first performs 5
+      rounds of presenting an image from each cluster, then it uses your input to show you pictures from
+      your most liked styles so far, as well as their similar styles and 1 random style just for fun. The
+      styles, as well as their descriptions, were pulled from the website https://aesthetics.fandom.com/.
+      The images were pulled from Pinterest using the pinscraper program created by GitHub user iamatulsingh.
